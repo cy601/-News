@@ -1,0 +1,92 @@
+<view class="body">
+	<view class="page">
+		<!-- nav view start -->
+		<view class="navbar" style="height:{{navH}}px">
+			<!-- //下面是给标题的顶部设置一个状态栏高度的间距，防止标题太靠顶部 -->
+			<view class="title-view" bindtap="weatherReport" style="margin-top:{{statusBarHeight+10}}px">
+				<view class="city" style="margin-right:20rpx">{{city}}</view>
+				<view class="weather">
+					<view style="padding-right:10rpx">{{weather}}</view>
+					<view>{{temperature}}</view>
+				</view>
+				<!-- 搜索按钮 -->
+			</view>
+			<view class="search-view">
+				<image src="/icons/search.png" class="search-img" style="margin-top:{{statusBarHeight+10}}px" bindtap="search" />
+			</view>
+		</view>
+	</view>
+	<view class="navbg">
+		<view class="nav">
+			<scroll-view class="scroll-view_H" scroll-x="true">
+				<view class="scroll-view_H" style="font-size:{{selectFontSize}}px">
+					<view>
+						<view class="{{flag=='头条'?'select':'normal'}}" id="头条" bindtap="browsing">头条</view>
+					</view>
+					<view>
+						<view class="{{flag=='国内'?'select':'normal'}}" id="国内" bindtap="browsing">国内</view>
+					</view>
+					<view>
+						<view class="{{flag=='国际'?'select':'normal'}}" id="国际" bindtap="browsing">国际</view>
+					</view>
+					<view>
+						<view class="{{flag=='政治'?'select':'normal'}}" id="政治" bindtap="browsing">政治</view>
+					</view>
+					<view>
+						<view class="{{flag=='财经'?'select':'normal'}}" id="财经" bindtap="browsing">财经</view>
+					</view>
+					<view>
+						<view class="{{flag=='体育'?'select':'normal'}}" id="体育" bindtap="browsing">体育</view>
+					</view>
+					<view>
+						<view class="{{flag=='科技'?'select':'normal'}}" id="科技" bindtap="browsing">科技</view>
+					</view>
+					<view>
+						<view class="{{flag=='NBA'?'select':'normal'}}" id="NBA" bindtap="browsing">NBA</view>
+					</view>
+					<view>
+						<view class="{{flag=='股票'?'select':'normal'}}" id="股票" bindtap="browsing">股票</view>
+					</view>
+					<view>
+						<view class="{{flag=='星座'?'select':'normal'}}" id="星座" bindtap="browsing">星座</view>
+					</view>
+					<view>
+						<view class="{{flag=='女性'?'select':'normal'}}" id="女性" bindtap="browsing">女性</view>
+					</view>
+					<view>
+						<view class="{{flag=='健康'?'select':'normal'}}" id="健康" bindtap="browsing">健康</view>
+					</view>
+					<view>
+						<view class="{{flag=='育儿'?'select':'normal'}}" id="育儿" bindtap="browsing">育儿</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!-- <view class="add">+</view> -->
+	</view>
+
+	<scroll-view scroll-y="true" bindscrolltolower="loadmore" class="news-container" style="height:{{scrollHeight}}px;">
+		<block wx:for="{{newslist}}" wx:for-item="newsItem">
+			<!-- <navigator url="../news/news?newscontent={{newsItem.content}}"> -->
+			<!-- <view bindtap = "navigate" id="{{newsItem}}"> -->
+			<view class="news-item" bindtap="navigate" id="{{content}}" data-key="{{newsItem}}">
+				<view class="text-img">
+					<view class="text">
+						<text class="title" style="font-size:{{titleFontSize}}px">{{newsItem.title}}</text>
+						<view class="news-footer"> <text>{{newsItem.src}} </text>
+
+							<text>{{newsItem.time}}</text>
+						</view>
+					</view>
+					<view class="img">
+						<image src="{{newsItem.pic}}" mode="witdthFix"></image>
+					</view>
+				</view>
+
+			</view>
+			<!-- </view> -->
+			<!-- </navigator> -->
+		</block>
+	</scroll-view>
+	<view class="load" hidden="{{hidden}}">加载中...</view>
+</view>

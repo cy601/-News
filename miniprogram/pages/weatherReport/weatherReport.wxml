@@ -1,0 +1,75 @@
+<view class="container">
+
+	<view class="page" style="width:100%">
+		<!-- nav view start -->
+		<view class="navbar" style="height:{{navH}}px">
+			<!-- //下面是给标题的顶部设置一个状态栏高度的间距，防止标题太靠顶部 -->
+			<view class="title-view" bindtap="weatherReport" style="margin-top:{{(statusBarHeight+6)*2}}rpx">
+
+
+				<view class='home-icon' bindtap='home' style="padding-top:20rpx">
+					<image src='/icons/arrow.png'></image>
+				</view>
+				<view class="title">{{location}}</view>
+			</view>
+
+		</view>
+	</view>
+	<view class="top">
+		<!-- <view class="title">{{location}}</view> -->
+		<view class="subtitle">
+			<view class="refreshtime">{{ weatherUpdateTime[1]}}更新</view>
+			<view class="refreshbutton" bindtap="refresh">
+				<image class="refreshbutton" src="/icons/refresh.png" />
+			</view>
+		</view>
+
+		<view class="visual">
+			<view style="height:280rpx">
+				<view class="weather">
+					<view class="temperature">{{ currentTemperature}}</view>
+					<view class="wea">
+						<view class="degree">°</view>
+						<view class="wea_bottom"> {{currentWea}}</view>
+					</view>
+				</view>
+				<view class="weathericon">
+
+					<image src='{{weatherIcon}}' style='height:{{iconImageHeight}}px;width:{{iconImageHeight}}px;padding-left:70rpx;padding-top:30rpx'></image>
+
+				</view>
+			</view>
+
+
+		</view>
+		<view class="visual_bottom">
+			<view class="visual_bottom_left">
+				<view class="visual_bottom_left_bottom"><view>
+					<image src="/icons/quality.png" style="width:30rpx;height:30rpx;padding-right:5rpx;padding-top:10rpx" />{{quality}}</view>
+				<view>
+					<image src="/icons/humidity.png" style="width:30rpx;height:30rpx;padding-right:5rpx" />{{humidity}}</view></view>
+			</view>
+			<view class="visual_bottom_right">
+			<view class="visual_bottom_right_bottom"><view>
+					<image src="/icons/windspeed.png" style="width:30rpx;height:30rpx;padding-right:5rpx;padding-top:10rpx" />{{windspeed}}</view>
+			<view>
+					<image src="/icons/winddirection.png" style="width:30rpx;height:30rpx;padding-right:5rpx;padding-top:10rpx" />{{winddirection}}</view></view>
+				<!-- <view class="tips">{{tips}}</view> -->
+			</view>
+		</view>
+
+
+	</view>
+
+	<scroll-view class='list' scroll-y style="height:{{scrollHeight+80}}rpx;" bindscrolltoupper="refresh">
+		<view wx:for="{{listArray}}" wx:for-index="index" wx:for-item="item">
+			<view class="list_item {{index % 2 == 0 ? 'list_item_alter' : ''}}">
+				<image class="list_image" src='{{item.icon}}'></image>
+				<text class="list_weekday">{{item.weekday}} · {{item.wea}}</text>
+				<view class="list_t_highest">{{item.tem1}}</view>
+				<view class="list_t_lowest" style="padding-left:20rpx">/</view>
+				<view class="list_t_lowest">{{item.tem2}} </view>
+			</view>
+		</view>
+	</scroll-view>
+</view>

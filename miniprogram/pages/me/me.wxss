@@ -1,0 +1,156 @@
+/* pages/me/me.wxss */
+
+.bg {
+  width: 100%;
+  background-color: #00B26A;
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  height: 82px;
+  font-size: 15px;
+  /* display: flex; */
+  align-items: center;
+}
+
+.tologin {
+  display: flex;
+  flex-direction: row;
+}
+
+.head image {
+  border-radius: 50%;
+  margin-left: 10px;
+  /* margin-bottom: 8px; */
+}
+
+.login {
+  color: #ffffff;
+  font-size: 15px;
+  /* position: absolute; */
+  /* left: 100px; */
+  /* margin-top: 30px; */
+  align-items: center;
+  position: relative;
+  display: flex;
+  padding-left: 14px;
+}
+
+.loginbutton {
+  align-items: center;
+  position: relative;
+  display: flex;
+  /* padding-left: 14px; */
+  width: auto;
+  color: #ffffff;
+}
+
+.detail {
+  color: #ffffff;
+  font-size: 15px;
+  position: absolute;
+  right: 10px;
+  /* margin-top: 30px; */
+}
+
+.count {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.desc {
+  width: 33%;
+  text-align: center;
+  font-size: 13px;
+  color: #ffffff;
+  line-height: 20px;
+  border-right: 1px solid #cccccc;
+}
+
+.h {
+  width: 100%;
+  height: 15px;
+  background-color: #F4F5F6;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100rpx;
+}
+
+.bt {
+  /* width: 240rpx; */
+  /* height: 90rpx; */
+  text-align: left;
+  /* line-height: 38px; */
+  background-color: transparent;
+  /*按钮透明*/
+  border: none;
+  /*设置按钮边框*/
+}
+
+.bt::after {
+  border: none；
+}
+
+/* 清除button原有样式 */
+
+.button {
+  padding: 0 0;
+  font-weight: normal;
+  padding-left: 0;
+}
+
+/* button.form_button {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  position: static;
+  border: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+  font-size: 0rpx;
+  color: transparent;
+}
+
+button.form_button::after {
+  content: '';
+  width: 0;
+  height: 0;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  display: none;
+  background-color: transparent;
+} */
+
+.title {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  font-size: 15px;
+}
+
+.detail2 {
+  font-size: 15px;
+  position: absolute;
+  right: 10px;
+  height: 50px;
+  line-height: 50px;
+  color: #888888;
+}
+
+.line {
+  border: 1px solid #cccccc;
+  opacity: 0.2;
+}
+
+.button {
+  font-weight: normal;
+  font-size: 15px;
+}

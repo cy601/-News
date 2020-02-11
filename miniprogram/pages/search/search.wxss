@@ -1,0 +1,129 @@
+/* pages/search/search.wxss */
+
+.body {
+  font-size: 16px;
+  font-family: "PingFang SC", "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, "Microsoft YaHei", "微软雅黑", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  color: black;
+  position: relative;
+  padding: 0 5rpx 0 5rpx;
+}
+
+.fire-title {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+}
+
+.search-img {
+  width: 40rpx;
+  height: 40rpx;
+  padding-top: 5rpx;
+  padding-right: 10rpx;
+}
+
+.fire-word {
+  font-weight: bold;
+  font-size: 33rpx;
+}
+
+.topicword-container {
+  /* margin:2%; */
+  box-sizing: border-box;
+  /* width:95%; */
+  /* position: relative; */
+  padding: 0rpx 40rpx 50rpx 40rpx;
+}
+
+.word-item {
+  line-height: 30px;
+  border-bottom: 1px solid #E7F0D2;
+  height: 60rpx;
+  box-sizing: border-box;
+  /* font-size:38rpx; */
+  padding-bottom: 75rpx;
+  font-weight: lighter;
+}
+
+.word {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60rpx;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 0;
+}
+
+.index {
+  /* padding-right: 10rpx; */
+  /* font-size: 34rpx; */
+  color: #F68B24;
+  font-weight: lighter;
+}
+
+/* 搜索结果 */
+
+.news-container {
+  /* margin:2%; */
+  box-sizing: border-box;
+  /* width:95%; */
+  position: relative;
+  padding: 0rpx 15rpx;
+}
+
+.news-item {
+  line-height: 30px;
+  border-bottom: 1px solid #E7F0D2;
+  height: 90px;
+  box-sizing: border-box;
+}
+
+.text-img {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 90px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px 0;
+  position: absolute;
+}
+
+.text {
+  width: 65%;
+  /* height: 120rpx; */
+  box-sizing: border-box;
+  /* padding-right:2%; */
+  /* text-overflow: ellipsis;
+  overflow: hidden; */
+  /* height: 120rpx; */
+}
+
+.title {
+  /* width: 65%; */
+  height: 120rpx;
+  box-sizing: border-box;
+  /* padding-right:2%; */
+  display: flex;
+  /* //超出一行文字自动隐藏 */
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.img {
+  width: 35%;
+  box-sizing: border-box;
+  padding-left: 1%;
+}
+
+.img image {
+  width: 100%;
+  height: 100%;
+}
+
+.news-footer {
+  font-size: 0.7rem;
+  color: #BDC6B8;
+}

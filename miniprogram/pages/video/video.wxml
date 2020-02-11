@@ -1,0 +1,21 @@
+<!-- <view >
+<video src="https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f0a0000bp6fift1mik1ge6kk9h0&line=0&ratio=540p&media_type=4&vr_type=0&improve_bitrate=0&is_play_url=1&is_support_h265=0&source=PackSourceEnum_FOLLOW_FEED" />
+</view> -->
+<view class="body">
+		<scroll-view scroll-y="true" bindscrolltolower="loadmore" class="video-container" style="height:{{scrollHeight}}px;">
+				<block wx:for="{{videolist}}" wx:for-item="video">
+						<view class="video-item" bindtap="details" id="{{content}}" data-key="{{video}}">
+								<view class="video-img">
+										<view class="pic">
+												<image src="{{video.coverurl}}" class="picture" mode="aspectFill" />
+												<!-- <view class="duration">{{video.duration/1000}}</view> -->
+										</view>
+										<view class="text" style="font-size:{{listFontSize}}px">{{video.title}}</view>
+										<view class="author">{{video.author}}</view>
+								</view>
+						</view>
+						<!-- </view> -->
+						<!-- </navigator> -->
+				</block>
+		</scroll-view>
+</view>

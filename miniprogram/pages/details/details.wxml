@@ -1,0 +1,102 @@
+<view class="page-section" bindtap="doubleTap" bindtouchstart="touchStart" bindtouchend="touchEnd">
+  <view class="rich-text-div">
+    <text class="aritcle-title" style="font-size:{{titleFontSize}}px">{{title}}</text>
+    <view class="subtitle">
+      <view class="aritcle-source" style="width:90%">
+        <view style="padding-right:15rpx">{{source}}</view>
+        <view>{{date}}</view>
+      </view>
+      <view style="width:10%">
+        <view class="star" bindtap="tostar">
+          <image src="/icons/star.png" wx:if="{{star}}" style="width:25px;height:25px" />
+          <image src="/icons/nostar.png" wx:else="{{star}}" style="width:25px;height:25px" />
+        </view>
+      </view>
+    </view>
+    <view class="rich-text-wrp">
+      <rich-text nodes="{{body}}" style="font-size:{{aritcalFontsize}}px"></rich-text>
+    </view>
+    <div>
+      <text class="source-url" bindtap="webview">跳转原文</text>
+    </div>
+  </view>
+  <!-- 新闻下方评论展示 -->
+  <view class="comments">
+    <block wx:if="{{commentsFlag}}">
+      <view class="commentsTitle">
+        <view class="headline">全部评论</view>
+        <view wx:if="{{order}}" class="order" bindtap="changeOrder">
+          <image src="/icons/order.png" style="width:26rpx;height:34rpx" />
+          <view>正序</view>
+        </view>
+        <view wx:else class="order" bindtap="changeOrder">
+          <image src="/icons/order_reverse.png" style="width:26rpx;height:34rpx" />
+          <view>逆序</view>
+        </view>
+      </view>
+      <view class="commentsCenter">
+        <scroll-view scroll-y="true" class="commentsContainer" style="height:{{scrollHeight-30}}px">
+          <block wx:for="{{commentsList}}" wx:for-item="commentsItem">
+            <view class="commentsItem" bindtap="navigate" bindlongpress="deleteNews" id="{{index}}" data-key="{{commentsItem}}">
+              <view class="commentsTop">
+                <view class="portrait">
+                  <image class="icon" src='{{commentsItem[0].avatarUrl}}' />
+                </view>
+                <view class="arritbute">
+                  <view class="name_device">
+                    <view class="nickname">{{commentsItem[0].nickName}}</view>
+                    <view class="device" wx:if="{{commentsItem[6]}}">
+                      <image src="/icons/phone.png" style="width:27rpx;height:32rpx;padding-top:7rpx;padding-left:15rpx" />
+                      <view style="padding-left:5rpx">{{commentsItem[7]}}</view>
+                    </view>
+                  </view>
+                  <view class="location">{{commentsItem[3]}}    {{commentsItem[1]}}</view>
+                </view>
+                <view class="floor">#{{index+1}}</view>
+              </view>
+              <view class="commentsContent">{{commentsItem[2]}}</view>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="commentsTitle">
+        <view class="headline">暂无评论</view>
+        <!-- <view class="order">正序</view> -->
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 底部评论栏 -->
+<view class="review">
+  <view class="back" bindtap="back">
+    <image src="/icons/arrow_dark.png" class="backicon" />
+  </view>
+  <!-- <view class="weui-search-bar__form"> -->
+  <view class="commentsbar">
+    <!-- <icon class="weui-icon-search_in-box" type="search" size="14"></icon> -->
+    <image src="/icons/write.png" style="height:18px;width:18px" />
+    <input type="text" class="weui-search-bar__input" placeholder="写评论" value="{{inputVal}}" style="padiing-top:4px;padding-left:9px;font-size:16px;width:320rpx;position:relative;padding-right:10rpx" focus="{{false}}" bindinput="inputTyping" bindconfirm="enter" confirm-type="send" />
+    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" style="position:relative" bindtap="clearInput">
+      <icon type="clear" size="14"></icon>
+    </view>
+    <view class="commit" wx:if="{{inputVal.length > 0}}">
+      <view wx:if="{{hasUserInfo}}" style="text-align: center;" bindtap="enter">发表</view>
+      <button wx:else class="bt button" style="text-align: center;" open-type="getUserInfo" bindtap="getUserInfo">
+        登录
+      </button>
+      <!-- <button style="width:25px;height:32px"></button> -->
+    </view>
+  </view>
+  <view>
+    <view class="endstar" bindtap="tostar">
+      <image src="/icons/star.png" wx:if="{{star}}" style="width:22px;height:22px; align-items: center;" />
+      <image src="/icons/nostar.png" wx:else="{{star}}" style="width:22px;height:22px; align-items: center;" />
+    </view>
+  </view>
+  <!-- <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+    <icon class="weui-icon-search" type="search" size="14"></icon>
+    <view class="weui-search-bar__text">写评论</view>
+  </label> -->
+</view>

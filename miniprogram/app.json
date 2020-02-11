@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/home",
+    "pages/mycomments/mycomments",
+    "pages/setup/setup",
+    "pages/myfootprint/myfootprint",
+    "pages/video/video",
+    "pages/me/me",
+    "pages/myfav/myfav",
+    "pages/search/search",
+    "pages/logs/logs",
+    "pages/details/details",
+    "pages/webview/webview",
+    "pages/weatherReport/weatherReport",
+    "pages/videoplay/videoplay"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00B26A",
+    "navigationBarTitleText": "指尖快讯News",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#00B26A",
+    "borderStyle": "black",
+    "backgroundColor": "#F9F9F9",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/icons/home.png",
+        "selectedIconPath": "/icons/home_sel.png"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "视频榜",
+        "iconPath": "/icons/video.png",
+        "selectedIconPath": "/icons/video_sel.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "/icons/me.png",
+        "selectedIconPath": "/icons/me_sel.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

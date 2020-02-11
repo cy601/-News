@@ -1,0 +1,58 @@
+<view class="navbg">
+  <view class="nav">
+    <view class="scroll-view_H" style="font-size:{{selectFontSize}}px">
+      <view>
+        <view class="{{flag=='新闻'?'select':'normal'}}" id="新闻" bindtap="changeType">新闻</view>
+      </view>
+      <view>
+        <view class="{{flag=='视频'?'select':'normal'}}" id="视频" bindtap="changeType">视频</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{flag=='新闻'}}" class="deletehistory" bindtap="deleteNewsHistory">
+    <view style="text-align: center;">清空</view>
+    <!-- <button style="width:25px;height:32px"></button> -->
+  </view>
+  <view wx:elif="{{flag=='视频'}}" class="deletehistory" bindtap="deleteVideoHistory">
+    <view style="text-align: center;">清空</view>
+    <!-- <button style="width:25px;height:32px"></button> -->
+  </view>
+</view>
+<view wx:if="{{flag=='新闻'}}">
+  <scroll-view scroll-y="true" class="news-container" style="height:{{scrollHeight-30}}px">
+    <block wx:for="{{myfootprintNewsList}}" wx:for-item="newsItem">
+      <view class="news-item" bindtap="navigate" bindlongpress="deleteNews" id="{{index}}" data-key="{{newsItem}}">
+        <view class="text-img">
+          <view class="text">
+            <text class="title" style="font-size:{{titleFontSize}}px">{{newsItem.news.title}}</text>
+            <view class="news-footer">
+              <text>{{newsItem.news.src}}</text>
+              <text>{{newsItem.news.time}}</text>
+            </view>
+          </view>
+          <view class="img">
+            <image src="{{newsItem.news.pic}}" mode="witdthFix"></image>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<view wx:elif="{{flag=='视频'}}">
+  <scroll-view scroll-y="true" class="video-container" style="height:{{scrollHeight-30}}px;">
+    <block wx:for="{{myfootprintVideoList}}" wx:for-item="video">
+      <view class="video-item" bindtap="videoDetails" bindlongpress='deleteVideo' id="{{index}}" data-key="{{video}}">
+        <view class="video-img">
+          <view class="pic">
+            <image src="{{video.news.coverurl}}" class="picture" mode="aspectFill" />
+            <!-- <view class="duration">{{video.duration/1000}}</view> -->
+          </view>
+          <view class="videotext" style="font-size:{{listFontSize}}px">{{video.news.title}}</view>
+          <view class="author">{{video.news.author}}</view>
+        </view>
+      </view>
+      <!-- </view> -->
+      <!-- </navigator> -->
+    </block>
+  </scroll-view>
+</view>
