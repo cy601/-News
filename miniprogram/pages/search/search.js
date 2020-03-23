@@ -18,6 +18,12 @@ Page({
     fontsize: 1,//默认字体为正常
     titleFontSize: 16,
     listFontSize: 19,
+
+
+
+    //暗黑模式及主题色
+    theme: '',
+    dark: '',
   },
 
   /**
@@ -29,8 +35,23 @@ Page({
     that.setData({
       fontsize: app.globalData.fontsize,//获取全局字体大小
     })
+
     // var url=""
     that.setFontSize(this.data.fontsize);//设置本页面的字体大小值
+
+    this.setNavigationBarColor(this.data.theme)//设置导航栏背景色
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+
     var url = 'http://api.tianapi.com/txapi/nethot/index?key=5a34f94c61ecb00817ee7248b096681d'
     let request = wx.request({
       url: url,
@@ -60,6 +81,55 @@ Page({
   onShow: function () {
     this.onLoad()//重新加载，
   },
+
+
+
+  //设置导航栏颜色
+  setNavigationBarColor: function (theme) {
+    var color = '';
+    switch (theme) {
+      case '':
+        color = '#00B26A'
+   
+        break;
+      case 'red':
+        color = '#D22222'
+        break;
+      case 'blue':
+        color = '#0077ED'
+        break;
+      case 'purple':
+        color = '#673BB7'
+        break;
+
+      default:
+        console.log("color" +color);
+        console.log(theme);
+        
+        break;
+    }
+    if (app.globalData.darkmode) {
+      color = '#000000'
+    }
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: color,
+      animation: {
+        duration: 0,
+        timingFunc: 'linear'
+      },
+      success: (result) => {
+        console.log('set navbar color succee');
+
+      },
+      fail: () => { },
+      complete: () => { }
+    });
+  },
+
+
+
+
 
   //显示输入的文字，点击取消后消失
   showInput: function () {

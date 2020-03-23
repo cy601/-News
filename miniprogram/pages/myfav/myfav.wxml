@@ -1,4 +1,6 @@
-<view class="navbg">
+
+<view  class="page{{dark}}">
+<view class="navbg{{dark}}">
 		<view class="nav">
 				<view class="scroll-view_H" style="font-size:{{selectFontSize}}px">
 						<view>
@@ -13,7 +15,7 @@
 <view wx:if="{{flag=='新闻'}}">
 		<scroll-view scroll-y="true" class="news-container" style="height:{{scrollHeight-30}}px">
 				<block wx:for="{{myFavList}}" wx:for-item="newsItem">
-						<view class="news-item" bindtap="navigate" bindlongpress="deleteNews" id="{{index}}" data-key="{{newsItem}}">
+						<view class="news-item{{dark}}" bindtap="navigate" bindlongpress="deleteNews" id="{{index}}" data-key="{{newsItem}}">
 								<view class="text-img">
 										<view class="text">
 												<text class="title" style="font-size:{{titleFontSize}}px">{{newsItem.news.title}}</text>
@@ -33,7 +35,7 @@
 <view wx:elif="{{flag=='视频'}}">
 		<scroll-view scroll-y="true" class="video-container" style="height:{{scrollHeight-30}}px;">
 				<block wx:for="{{myVideoFavList}}" wx:for-item="video">
-						<view class="video-item" bindtap="videoDetails" bindlongpress='deleteVideo' id="{{index}}" data-key="{{video}}">
+						<view class="video-item{{dark}}" bindtap="videoDetails" bindlongpress='deleteVideo' id="{{index}}" data-key="{{video}}">
 								<view class="video-img">
 										<view class="pic">
 												<image src="{{video.news.coverurl}}" class="picture" mode="aspectFill" />
@@ -47,4 +49,5 @@
 						<!-- </navigator> -->
 				</block>
 		</scroll-view>
+</view>
 </view>

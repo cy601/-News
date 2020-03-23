@@ -14,6 +14,11 @@ Page({
     videoDetails: [],
     details: [],
     scrollHeight: 0,
+
+    //暗黑模式及主题色
+    theme: '',
+    dark: '',
+
   },
 
   /**
@@ -28,6 +33,21 @@ Page({
     that.setFontSize(this.data.fontsize);
 
 
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+    this.setNavigationBarColor(this.data.theme);
+
+
+
     //获得窗口的高度
     wx.getSystemInfo({
       success: function (res) {
@@ -39,6 +59,50 @@ Page({
 
     this.footprintInit();//初始化浏览记录列表
   },
+
+  
+//设置导航栏颜色
+setNavigationBarColor: function (theme) {
+  var color = '';
+  switch (theme) {
+    case '':
+      color = '#00B26A'
+      break;
+    case 'red':
+      color = '#D22222'
+      break;
+    case 'blue':
+      color = '#0077ED'
+      break;
+    case 'purple':
+      color = '#673BB7'
+      break;
+
+    default:
+
+      break;
+  }
+  if (app.globalData.darkmode) {
+    color = '#000000'
+  }
+  wx.setNavigationBarColor({
+    frontColor: '#ffffff',
+    backgroundColor: color,
+    animation: {
+      duration: 0,
+      timingFunc: 'linear'
+    },
+    success: (result) => {
+      console.log('set navbar color succee');
+
+    },
+    fail: () => { },
+    complete: () => { }
+  });
+},
+
+
+
 
   /* ********************************************
           改变所选类别（视频、新闻）

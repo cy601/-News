@@ -7,6 +7,22 @@ page {
   overflow-y: hidden;
 }
 
+.page {
+  width: 100%;
+  height: 100%;
+  /* position: absolute; */
+
+}
+
+.pagedark {
+  width: 100%;
+  height: 100%;
+  /* position: absolute; */
+  background: black;
+  color: white;
+
+}
+
 /* .container {
     flex-flow: column nowrap; 
     justify-content: top; 
@@ -26,6 +42,12 @@ page {
 .news-item {
   line-height: 30px;
   border-bottom: 1px solid #E7F0D2;
+  height: 90px;
+  box-sizing: border-box;
+}
+.news-itemdark {
+  line-height: 30px;
+  border-bottom: 1px solid #242424;
   height: 90px;
   box-sizing: border-box;
 }
@@ -143,7 +165,13 @@ page {
   border-bottom: 1px solid #E7F0D2;
   line-height: 30px;
 }
-
+.video-itemdark {
+  width: 100%;
+  height: 560rpx;
+  padding-top: 5rpx;
+  border-bottom: 1px solid #242424;
+  line-height: 30px;
+}
 .video-img {
   display: flex;
   flex-direction: column;

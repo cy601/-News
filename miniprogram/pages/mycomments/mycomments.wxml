@@ -1,60 +1,62 @@
-<view class="navbg">
-		<view class="nav">
-				<view class="scroll-view_H" style="font-size:{{selectFontSize}}px">
-						<view>
-								<view class="{{flag=='新闻'?'select':'normal'}}" id="新闻" bindtap="changeType">新闻</view>
-						</view>
-						<view>
-								<view class="{{flag=='视频'?'select':'normal'}}" id="视频" bindtap="changeType">视频</view>
+<view class="page{{dark}}">
+		<view class="navbg{{dark}}">
+				<view class="nav">
+						<view class="scroll-view_H" style="font-size:{{selectFontSize}}px">
+								<view>
+										<view class="{{flag=='新闻'?'select':'normal'}}" id="新闻" bindtap="changeType">新闻</view>
+								</view>
+								<view>
+										<view class="{{flag=='视频'?'select':'normal'}}" id="视频" bindtap="changeType">视频</view>
+								</view>
 						</view>
 				</view>
 		</view>
-</view>
-<view wx:if="{{flag=='新闻'}}">
-		<view class="commentsCenter">
-				<scroll-view scroll-y="true" class="commentsContainer" style="height:{{scrollHeight-30}}px">
-						<block wx:for="{{myNewsCommentsList}}" wx:for-item="commentsItem">
-								<view class="commentsItem" bindtap="navigate" bindlongpress="deleteNews" id="{{index}}" data-key="{{commentsItem}}">
-										<view class="commentsTop">
-												<view class="portrait">
-														<image class="icon" src='{{commentsItem.comments[0].avatarUrl}}' />
-												</view>
-												<view class="arritbute">
-														<view class="nickname">{{commentsItem.comments[0].nickName}}</view>
-														<view class="location">
-																{{commentsItem.comments[3]}} {{commentsItem.comments[1]}}
+		<view wx:if="{{flag=='新闻'}}">
+				<view class="commentsCenter">
+						<scroll-view scroll-y="true" class="commentsContainer" style="height:{{scrollHeight-30}}px">
+								<block wx:for="{{myNewsCommentsList}}" wx:for-item="commentsItem">
+										<view class="commentsItem{{dark}}" bindtap="navigate" bindlongpress="deleteNews" id="{{index}}" data-key="{{commentsItem}}">
+												<view class="commentsTop">
+														<view class="portrait">
+																<image class="icon" src='{{commentsItem.comments[0].avatarUrl}}' />
 														</view>
+														<view class="arritbute">
+																<view class="nickname">{{commentsItem.comments[0].nickName}}</view>
+																<view class="location">
+																		{{commentsItem.comments[3]}} {{commentsItem.comments[1]}}
+																</view>
+														</view>
+														<view class="floor">#{{index+1}}</view>
 												</view>
-												<view class="floor">#{{index+1}}</view>
+												<view class="commentsContent">{{commentsItem.comments[2]}}</view>
+												<view class="newsTitle{{dark}}">原文：[{{commentsItem.news.title}}]</view>
 										</view>
-										<view class="commentsContent">{{commentsItem.comments[2]}}</view>
-										<view class="newsTitle">原文：[{{commentsItem.news.title}}]</view>
-								</view>
-						</block>
-				</scroll-view>
+								</block>
+						</scroll-view>
+				</view>
 		</view>
-</view>
-<view wx:elif="{{flag=='视频'}}">
-		<view class="commentsCenter">
-				<scroll-view scroll-y="true" class="commentsContainer" style="height:{{scrollHeight-30}}px">
-						<block wx:for="{{myVideoCommentsList}}" wx:for-item="commentsItem">
-								<view class="commentsItem" bindtap="navigatetoVideo" bindlongpress="deleteNews" id="{{index}}" data-key="{{commentsItem}}">
-										<view class="commentsTop">
-												<view class="portrait">
-														<image class="icon" src='{{commentsItem.comments[0].avatarUrl}}' />
-												</view>
-												<view class="arritbute">
-														<view class="nickname">{{commentsItem.comments[0].nickName}}</view>
-														<view class="location">
-																{{commentsItem.comments[3]}} {{commentsItem.comments[1]}}
+		<view wx:elif="{{flag=='视频'}}">
+				<view class="commentsCenter">
+						<scroll-view scroll-y="true" class="commentsContainer" style="height:{{scrollHeight-30}}px">
+								<block wx:for="{{myVideoCommentsList}}" wx:for-item="commentsItem">
+										<view class="commentsItem{dark}" bindtap="navigatetoVideo" bindlongpress="deleteNews" id="{{index}}" data-key="{{commentsItem}}">
+												<view class="commentsTop">
+														<view class="portrait">
+																<image class="icon" src='{{commentsItem.comments[0].avatarUrl}}' />
 														</view>
+														<view class="arritbute">
+																<view class="nickname">{{commentsItem.comments[0].nickName}}</view>
+																<view class="location">
+																		{{commentsItem.comments[3]}} {{commentsItem.comments[1]}}
+																</view>
+														</view>
+														<view class="floor">#{{index+1}}</view>
 												</view>
-												<view class="floor">#{{index+1}}</view>
+												<view class="commentsContent">{{commentsItem.comments[2]}}</view>
+												<view class="newsTitle{{dark}}">原视频：[{{commentsItem.video.title}}]</view>
 										</view>
-										<view class="commentsContent">{{commentsItem.comments[2]}}</view>
-										<view class="newsTitle">原视频：[{{commentsItem.video.title}}]</view>
-								</view>
-						</block>
-				</scroll-view>
+								</block>
+						</scroll-view>
+				</view>
 		</view>
 </view>

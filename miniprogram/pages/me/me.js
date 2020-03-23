@@ -9,32 +9,38 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    onShareAppMessage: function (options) {
 
-      let thas = this;
+    //暗黑模式及主题色
+    theme: '',
+    dark: '',
 
-      if (options.from === 'button') {
+    // onShareAppMessage: function (options) {
 
-        // 来自页面内转发按钮
+    //   let thas = this;
 
-        shareObj = {
-          title: "页面分享",
-          path: "/pages/index/index",
-          desc: "我在观运算命，你也来试试吧",
-          imageUrl: '/images/img_honorbook_masterdata.png',
-          success: function (res) {
-          }
+    //   if (options.from === 'button') {
 
-        }
-        return shareObj;
-      }
-    }
+    //     // 来自页面内转发按钮
+
+    //     shareObj = {
+    //       title: "页面分享",
+    //       path: "/pages/index/index",
+    //       desc: "我在观运算命，你也来试试吧",
+    //       imageUrl: '/images/img_honorbook_masterdata.png',
+    //       success: function (res) {
+    //       }
+
+    //     }
+    //     return shareObj;
+    //   }
+    // }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that=this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -61,6 +67,21 @@ Page({
         }
       })
     }
+    ;
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+    this.setNavigationBarColor(this.data.theme);
+
+
   },
   getUserInfo: function (e) {
     console.log(e)
@@ -101,6 +122,46 @@ Page({
       url: '/pages/setup/feedback',
     })
   },
+  //设置导航栏颜色
+  setNavigationBarColor: function (theme) {
+    var color = '';
+    switch (theme) {
+      case '':
+        color = '#00B26A'
+        break;
+      case 'red':
+        color = '#D22222'
+        break;
+      case 'blue':
+        color = '#0077ED'
+        break;
+      case 'purple':
+        color = '#673BB7'
+        break;
+
+      default:
+
+        break;
+    }
+    if (app.globalData.darkmode) {
+      color = '#000000'
+    }
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: color,
+      animation: {
+        duration: 0,
+        timingFunc: 'linear'
+      },
+      success: (result) => {
+        console.log('set navbar color succee');
+
+      },
+      fail: () => { },
+      complete: () => { }
+    });
+  },
+
 
 
 

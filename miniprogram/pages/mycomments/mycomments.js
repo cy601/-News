@@ -17,6 +17,11 @@ Page({
     videoDetails: [],
     details: [],
     scrollHeight: 0,
+
+    //暗黑模式及主题色
+    theme: '',
+    dark: '',
+
   },
 
   /**
@@ -30,6 +35,22 @@ Page({
     })
     that.setFontSize(this.data.fontsize);
 
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+    this.setNavigationBarColor(this.data.theme);
+
+
+
+
     //获得窗口的高度
     wx.getSystemInfo({
       success: function (res) {
@@ -41,6 +62,49 @@ Page({
     this.commentsListInit();//初始化评论列表
 
   },
+
+
+  //设置导航栏颜色
+  setNavigationBarColor: function (theme) {
+    var color = '';
+    switch (theme) {
+      case '':
+        color = '#00B26A'
+        break;
+      case 'red':
+        color = '#D22222'
+        break;
+      case 'blue':
+        color = '#0077ED'
+        break;
+      case 'purple':
+        color = '#673BB7'
+        break;
+
+      default:
+
+        break;
+    }
+    if (app.globalData.darkmode) {
+      color = '#000000'
+    }
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: color,
+      animation: {
+        duration: 0,
+        timingFunc: 'linear'
+      },
+      success: (result) => {
+        console.log('set navbar color succee');
+
+      },
+      fail: () => { },
+      complete: () => { }
+    });
+  },
+
+
   changeType: function (event) {
     var that = this;
     //改变选中类型
@@ -135,19 +199,19 @@ Page({
 
 
 
-      // db.collection('self_video_comments').where({
+    // db.collection('self_video_comments').where({
 
-      // }).get({
-      //   success: function (res) {
-      //     // console.log('dd');
+    // }).get({
+    //   success: function (res) {
+    //     // console.log('dd');
 
-      //     // 输出 [{ "title": "The Catcher in the Rye", ... }]
-      //     console.log(res)
-      //     that.setData({
-      //       myVideoCommentsList: res.data
-      //     })
-      //   }
-      // })
+    //     // 输出 [{ "title": "The Catcher in the Rye", ... }]
+    //     console.log(res)
+    //     that.setData({
+    //       myVideoCommentsList: res.data
+    //     })
+    //   }
+    // })
   },
   //点开新闻查看评论
   navigate: function (params) {//获取参数
@@ -240,7 +304,7 @@ Page({
 
   },
 
-  navigatetoVideo:function(params){
+  navigatetoVideo: function (params) {
     var that = this
     console.log(params);
 

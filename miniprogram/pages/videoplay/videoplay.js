@@ -39,6 +39,10 @@ Page({
     model: '',//用户设备型号
     deviceFlag: false,//标记此新闻的用户是否允许被获取设备信息
     order: true,//评论正序/逆序
+
+    //暗黑模式及主题色
+    theme: '',
+    dark: '',
   },
 
   /**
@@ -58,6 +62,22 @@ Page({
         author: this.data.details.author,
         hotindex: "热度：" + this.data.details.hotindex
       })
+
+
+
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+    this.setNavigationBarColor(this.data.theme);
+
 
 
     //用户是否允许评论时加上当前位置信息
@@ -229,6 +249,51 @@ Page({
         }
       }, 1500);
 
+  },
+
+
+
+
+
+
+  //设置导航栏颜色
+  setNavigationBarColor: function (theme) {
+    var color = '';
+    switch (theme) {
+      case '':
+        color = '#00B26A'
+        break;
+      case 'red':
+        color = '#D22222'
+        break;
+      case 'blue':
+        color = '#0077ED'
+        break;
+      case 'purple':
+        color = '#673BB7'
+        break;
+
+      default:
+
+        break;
+    }
+    if (app.globalData.darkmode) {
+      color = '#000000'
+    }
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: color,
+      animation: {
+        duration: 0,
+        timingFunc: 'linear'
+      },
+      success: (result) => {
+        console.log('set navbar color succee');
+
+      },
+      fail: () => { },
+      complete: () => { }
+    });
   },
 
 
@@ -455,7 +520,7 @@ Page({
     //评论数据库中没有此新闻，直接插入
     if (!this.data.commentsFlag) {
       if (this.data.position) {
-        var position = this.data.position.newslist[0].province + this.data.position.newslist[0].city + "网友"
+        var position = this.data.position.newslist[0].province + this.data.position.newslist[0].city
       }
       else {
         var position = ''
@@ -594,7 +659,8 @@ Page({
           util.formatTime(new Date()),//评论时间
           this.data.inputVal,//评论内容
           // this.data.position.newslist[0].province + this.data.position.newslist[0].city,
-          position,
+          this.data.position.newslist[0].province + this.data.position.newslist[0].city,
+
           0,
           0//点赞数为0
         ],

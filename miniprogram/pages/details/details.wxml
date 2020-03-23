@@ -1,6 +1,7 @@
-<view class="page-section" bindtap="doubleTap" bindtouchstart="touchStart" bindtouchend="touchEnd">
+<view class="body{{dark}}">
+<view class="page-section{{dark}}" bindtap="doubleTap" bindtouchstart="touchStart" bindtouchend="touchEnd">
   <view class="rich-text-div">
-    <text class="aritcle-title" style="font-size:{{titleFontSize}}px">{{title}}</text>
+    <view class="aritcle-title" style="font-size:{{titleFontSize}}px">{{title}}</view>
     <view class="subtitle">
       <view class="aritcle-source" style="width:90%">
         <view style="padding-right:15rpx">{{source}}</view>
@@ -13,8 +14,16 @@
         </view>
       </view>
     </view>
+    <view class="" wx:if="{{playFlag||pauseFlag}}" style="height:25px">
+      <view class="play" wx:if="{{playFlag}}" bindtap="end">
+        <image src="/icons/play.png" style="width:20px;height:20px" />
+      </view>
+      <view class="play" wx:if="{{pauseFlag}}" bindtap="play">
+        <image src="/icons/pause.png" style="width:20px;height:20px" />
+      </view>
+    </view>
     <view class="rich-text-wrp">
-      <rich-text nodes="{{body}}" style="font-size:{{aritcalFontsize}}px"></rich-text>
+      <rich-text id="articleContent" bindlongtap="broadcast" data-key="{{body}}" nodes="{{body}}" style="font-size:{{aritcalFontsize}}px"></rich-text>
     </view>
     <div>
       <text class="source-url" bindtap="webview">跳转原文</text>
@@ -69,7 +78,7 @@
   </view>
 </view>
 <!-- 底部评论栏 -->
-<view class="review">
+<view class="review{{dark}}">
   <view class="back" bindtap="back">
     <image src="/icons/arrow_dark.png" class="backicon" />
   </view>
@@ -99,4 +108,5 @@
     <icon class="weui-icon-search" type="search" size="14"></icon>
     <view class="weui-search-bar__text">写评论</view>
   </label> -->
+</view>
 </view>

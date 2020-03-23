@@ -29,13 +29,33 @@ Page({
     winddirection: '风速 ',
     windspeed: '风向',
 
+
+    theme: '',
+    dark: '',
+
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     this.calcScrollHeight();
+
+
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+
     //设置状态栏，获取经纬度,天气
     this.setData({
       navH: app.globalData.navHeight,
@@ -44,7 +64,7 @@ Page({
       // weatherData: app.globalData.weather
     })
     //获取位置,保存为全局变量
-    let that = this;
+
     setTimeout(() => {
       that.setData(
         {
@@ -155,8 +175,14 @@ Page({
       case "小雨":
         return "/icons/weather/weather_icon_13.svg";
       case "多云转阴":
-        // return "/icons/weather/weather_icon_13.svg";
-        
+        return "/icons/weather/weather_icon_2.svg";
+        case "阴转多云":
+          return "/icons/weather/weather_icon_2.svg";
+      case "雷阵雨转中雨":
+        return "/icons/weather/weather_icon_24.svg";
+      // return "/icons/weather/weather_icon_13.svg";
+      case "阴转阵雨":
+        return "/icons/weather/weather_icon_14.svg";
         break;
     }
   },

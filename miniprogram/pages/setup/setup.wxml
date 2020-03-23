@@ -1,85 +1,75 @@
-<view class="h"></view>
-<view class="item">
-		<view class="title">
-				<!-- <button class="bt button" bindtap="textsize"> -->
-				<picker bindchange="bindPickerFontChange" value="{{index}}" range="{{fontsize}}" class="picker">
-						<view>列表及正文字体大小</view>
-				</picker>
-				<!-- </button> -->
+<view class="page{{dark}}">
+		<view class="h{{dark}}"></view>
+		<view class="item">
+				<view class="title">
+						<!-- <button class="bt button" bindtap="textsize"> -->
+						<picker bindchange="bindPickerFontChange" value="{{index}}" range="{{fontsize}}" class="picker">
+								<view>列表及正文字体大小</view>
+						</picker>
+						<!-- </button> -->
+				</view>
+				<view class="detail2">
+						<text>{{fontsize[index]}}</text>
+				</view>
 		</view>
-		<view class="detail2">
-				<text>{{fontsize[index]}}</text>
+		<view class="line"></view>
+		<view class="item">
+				<!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
+				<view class="title">
+						<!-- <button >11</button> -->
+						夜间模式
+						<!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
+				</view>
+				<view class="detail2">
+						<switch checked="{{darkmode}}" bindchange="setdarkmode" />
+				</view>
 		</view>
+		<view class="line"></view>
+		<view class="item">
+				<!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
+				<view class="title">
+						<!-- <button >11</button> -->
+						评论时允许使用我的位置信息
+						<!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
+				</view>
+				<view class="detail2">
+						<switch checked="{{positionFlag}}" bindchange="positionMode" />
+				</view>
+		</view>
+		<view class="line"></view>
+		<view class="item">
+				<!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
+				<view class="title">
+						<!-- <button >11</button> -->
+						评论时允许使用我的设备信息
+						<!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
+				</view>
+				<view class="detail2">
+						<switch checked="{{deviceFlag}}" bindchange="deviceMode" />
+				</view>
+		</view>
+		<view class="line"></view>
+		<view class="item">
+				<view class="title" bindtap="clearstorage">
+						<!-- <button >11</button> -->
+						清除用户缓存
+				</view>
+				<view class="detail2">
+						<text>{{stroageinfo}}</text>
+				</view>
+		</view>
+		<view class="line"></view>
+		<view class="item">
+				<view class="title">
+						<!-- <button class="bt button" bindtap="textsize"> -->
+						<picker bindchange="bindPickerThemeChange" value="{{theme}}}" range="{{themelist}}" class="picker">
+								<view>主题颜色</view>
+						</picker>
+						<!-- </button> -->
+				</view>
+				<view class="detail2">
+						<text>{{themelist[theme]}}</text>
+				</view>
+		</view>
+		<view class="line"></view>
 </view>
-<view class="line"></view>
-<view class="item">
-		<!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
-		<view class="title">
-				<!-- <button >11</button> -->
-				<button class="bt button" open-type="share" id="share-button" bindtap="share">自动夜间模式</button>
-				<!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
-		</view>
-		<view class="detail2">
-				<switch checked="{{autodark}}" bindchange="setautodark" />
-		</view>
-</view>
-<view class="line"></view>
-<view class="item">
-		<!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
-		<view class="title">
-				<!-- <button >11</button> -->
-				<button class="bt button">夜间模式</button>
-				<!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
-		</view>
-		<view class="detail2">
-				<switch checked="{{darkmode}}" bindchange="setdarkmode" />
-		</view>
-</view>
-<view class="line"></view>
-<view class="item">
-		<!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
-		<view class="title">
-				<!-- <button >11</button> -->
-				评论时允许使用我的位置信息
-				<!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
-		</view>
-		<view class="detail2">
-				<switch checked="{{positionFlag}}" bindchange="positionMode" />
-		</view>
-</view>
-<view class="line"></view>
-<view class="item">
-		<!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
-		<view class="title">
-				<!-- <button >11</button> -->
-				评论时允许使用我的设备信息
-				<!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
-		</view>
-		<view class="detail2">
-				<switch checked="{{deviceFlag}}" bindchange="deviceMode" />
-		</view>
-</view>
-<view class="line"></view>
-<view class="item">
-		<view class="title">
-				<!-- <button >11</button> -->
-				<button class="bt button" bindtap="clearstorage">清除用户缓存</button>
-		</view>
-		<view class="detail2">
-				<text>{{stroageinfo}}</text>
-		</view>
-</view>
-<view class="line"></view>
-<view class="item">
-		<view class="title">
-				<!-- <button class="bt button" bindtap="textsize"> -->
-				<picker bindchange="bindPickerThemeChange" value="{{theme}}}" range="{{themelist}}" class="picker">
-						<view>主题颜色</view>
-				</picker>
-				<!-- </button> -->
-		</view>
-		<view class="detail2">
-				<text>{{themelist[theme]}}</text>
-		</view>
-</view>
-<view class="line"></view>

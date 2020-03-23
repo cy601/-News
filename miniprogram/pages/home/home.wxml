@@ -1,7 +1,7 @@
-<view class="body">
+<view class="body{{dark}}">
 	<view class="page">
 		<!-- nav view start -->
-		<view class="navbar" style="height:{{navH}}px">
+		<view class="navbar{{dark}}{{theme}}" style="height:{{navH}}px">
 			<!-- //下面是给标题的顶部设置一个状态栏高度的间距，防止标题太靠顶部 -->
 			<view class="title-view" bindtap="weatherReport" style="margin-top:{{statusBarHeight+10}}px">
 				<view class="city" style="margin-right:20rpx">{{city}}</view>
@@ -16,7 +16,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="navbg">
+	<view class="navbg{{dark}}">
 		<view class="nav">
 			<scroll-view class="scroll-view_H" scroll-x="true">
 				<view class="scroll-view_H" style="font-size:{{selectFontSize}}px">
@@ -69,7 +69,7 @@
 		<block wx:for="{{newslist}}" wx:for-item="newsItem">
 			<!-- <navigator url="../news/news?newscontent={{newsItem.content}}"> -->
 			<!-- <view bindtap = "navigate" id="{{newsItem}}"> -->
-			<view class="news-item" bindtap="navigate" id="{{content}}" data-key="{{newsItem}}">
+			<view class="news-item{{dark}}" bindtap="navigate" id="{{content}}" data-key="{{newsItem}}">
 				<view class="text-img">
 					<view class="text">
 						<text class="title" style="font-size:{{titleFontSize}}px">{{newsItem.title}}</text>

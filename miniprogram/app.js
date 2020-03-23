@@ -14,6 +14,9 @@ App({
     //   db: wx.cloud.database({
     //     env: 'fingerflash-ayfug'
     //  })
+
+    darkmode: '',//夜间模式，默认关闭
+    themecolor: '',//
   },
   onLaunch: function () {
 
@@ -39,6 +42,50 @@ App({
     wx.setStorageSync('logs', logs)
 
     that.getFontSize();
+    var darkmode = wx.getStorageSync('darkmode');
+    var theme = wx.getStorageSync('theme');
+    //判断是否开启夜间模式，夜间模式开启时，主题颜色失效
+    if (darkmode) {
+      that.globalData.darkmode = darkmode;
+      that.globalData.themecolor = ''
+    }
+    else {
+      console.log('theme color');
+      
+      switch (theme) {
+        case '0':
+          that.globalData.themecolor = ''
+          break;
+        case '1':
+          that.globalData.themecolor = 'red'
+          break;
+        case '2':
+          that.globalData.themecolor = 'blue'
+          break;
+        case '3':
+          that.globalData.themecolor = 'purple'
+          break;
+        default:
+          break;
+      }
+    }
+
+    // wx.setNavigationBarColor({
+    //   frontColor: '#ffffff',
+    //   backgroundColor: '#D22222',
+    //   animation: {
+    //     duration: 0,
+    //     timingFunc: 'linear'
+    //   },
+    //   success: (result) => {
+    //     console.log('set navbar color succee');
+        
+    //   },
+    //   fail: () => {},
+    //   complete: () => {}
+    // });
+
+    
 
     // 登录
     wx.login({

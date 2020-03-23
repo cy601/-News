@@ -1,63 +1,86 @@
-.h {
-    width: 100%;
-    height: 15px;
-    background-color: #F4F5F6;
-  }
-  
-  .item {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100rpx;
-  }
-  
-  .bt {
-    width: 600rpx;
-    /* height: 90rpx; */
-    text-align: left;
-    /* line-height: 38px; */
-    background-color: transparent;
-    /*按钮透明*/
-    border: none;
-    /*设置按钮边框*/
-  }
-  
-  .bt::after {
-    border: none；
-  }
-  
-  /* 清除button原有样式 */
-  .button{
-    padding: 0 0;
-    font-weight: normal;
-    padding-left: 0;
-  }
+.pgae {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 
-  .picker{
-    width: 700rpx;
-  }
-  .title {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    font-size: 15px;
-  }
-  
-  .detail2 {
-    font-size: 15px;
-    position: absolute;
-    right: 10px;
-    height: 50px;
-    line-height: 50px;
-    color: #888888;
-  }
-  
-  .line {
-    border: 1px solid #cccccc;
-    opacity: 0.2;
-  }
-  
-  .button {
-    font-weight: normal;
-    font-size: 15px;
-  }
+}
+
+.pagedark {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: black;
+  color: white;
+
+}
+
+.h {
+  width: 100%;
+  height: 15px;
+  background-color: #F4F5F6;
+}
+
+.hdark {
+  width: 100%;
+  height: 15px;
+  background-color: black;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100rpx;
+}
+
+.bt {
+  width: 600rpx;
+  /* height: 90rpx; */
+  text-align: left;
+  /* line-height: 38px; */
+  background-color: transparent;
+  /*按钮透明*/
+  border: none;
+  /*设置按钮边框*/
+}
+
+.bt::after {
+  border: none；
+}
+
+/* 清除button原有样式 */
+.button {
+  padding: 0 0;
+  font-weight: normal;
+  padding-left: 0;
+}
+
+.picker {
+  width: 700rpx;
+}
+
+.title {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  font-size: 15px;
+}
+
+.detail2 {
+  font-size: 15px;
+  position: absolute;
+  right: 10px;
+  height: 50px;
+  line-height: 50px;
+  color: #888888;
+}
+
+.line {
+  border: 1px solid #cccccc;
+  opacity: 0.2;
+}
+
+.button {
+  font-weight: normal;
+  font-size: 15px;
+}

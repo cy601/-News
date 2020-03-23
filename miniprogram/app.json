@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/home/home",
+    "pages/index/index",
     "pages/mycomments/mycomments",
     "pages/setup/setup",
     "pages/myfootprint/myfootprint",
@@ -20,6 +20,12 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.0",
+      "provider": "wx069ba97219f66d99"
+    }
+},
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00B26A",
@@ -27,6 +33,7 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
+    "custom":true,
     "selectedColor": "#00B26A",
     "borderStyle": "black",
     "backgroundColor": "#F9F9F9",
@@ -51,6 +58,7 @@
       }
     ]
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
-}
+
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+  }

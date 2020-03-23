@@ -23,6 +23,45 @@ page {
     /* 渐变色 */
 }
 
+.topdark {
+    flex: 0 0 40%;
+    /* 占比 */
+    width: 100%;
+    /* background: linear-gradient(#14B26D, #8EB2A2); */
+    background: black;
+    /* 渐变色 */
+}
+
+.topblue {
+    flex: 0 0 40%;
+    /* 占比 */
+    width: 100%;
+    background: linear-gradient(#0077ED, #93b8dc);
+    /* background:black ; */
+    /* 渐变色 */
+}
+
+.topred {
+    flex: 0 0 40%;
+    /* 占比 */
+    width: 100%;
+    background: linear-gradient(#D22222, #cb9191);
+    /* background:black ; */
+    /* 渐变色 */
+}
+
+.toppurple {
+    flex: 0 0 40%;
+    /* 占比 */
+    width: 100%;
+    background: linear-gradient(#673BB7, #b2a8c2);
+    /* background:black ; */
+    /* 渐变色 */
+}
+
+
+
+
 /* .title {
     text-align: center;
     font-size: 44rpx;
@@ -133,7 +172,7 @@ page {
     /* bottom: 0; */
     flex-direction: line;
     display: flex;
-    padding-top:30rpx
+    padding-top: 30rpx
 }
 
 .temperature {
@@ -174,11 +213,26 @@ page {
 .list_item {
     background-color: #fff;
     height: 75px;
+    color: #263344;
     font-size: 34r px;
 }
 
 .list_item_alter {
     background-color: #F7FFFC;
+    color: #263344;
+}
+
+
+.list_itemdark {
+    background-color: #242424;
+    height: 75px;
+    font-size: 34r px;
+    color: white;
+}
+
+.list_item_alterdark {
+    background-color: #242424;
+    color: white;
 }
 
 .list_image {
@@ -193,20 +247,20 @@ page {
     margin-top: 25px;
     float: left;
     margin-left: 10px;
-    color: #263344;
+    /* color: #263344; */
 }
 
 .list_t_lowest {
     margin-top: 25px;
     float: right;
-    color: #263344;
+    /* color: #263344; */
 }
 
 .list_t_highest {
     margin-top: 25px;
     float: right;
     margin-left: 10rpx;
-    color: #263344;
+    /* color: #263344; */
     margin-right: 20px;
     font-weight: 500;
 }
@@ -242,6 +296,67 @@ page {
     /* display: flex; */
     flex-direction: row;
 }
+
+.navbardark {
+    width: 100%;
+    overflow: hidden;
+    /* position: fixed; */
+    background: #242424;
+    /* top: 0; */
+    /* left: 0; */
+    z-index: 99;
+    /* display: flex; */
+    /* justify-content: left; */
+    justify-content: space-between;
+    /* display: flex; */
+    flex-direction: row;
+}
+
+.navbarblue {
+    width: 100%;
+    overflow: hidden;
+    /* position: fixed; */
+    background: #0077ED;
+    /* top: 0; */
+    /* left: 0; */
+    z-index: 99;
+    /* display: flex; */
+    /* justify-content: left; */
+    justify-content: space-between;
+    /* display: flex; */
+    flex-direction: row;
+}
+
+.navbarred {
+    width: 100%;
+    overflow: hidden;
+    /* position: fixed; */
+    background: #D22222;
+    /* top: 0; */
+    /* left: 0; */
+    z-index: 99;
+    /* display: flex; */
+    /* justify-content: left; */
+    justify-content: space-between;
+    /* display: flex; */
+    flex-direction: row;
+}
+
+.navbarpurple {
+    width: 100%;
+    overflow: hidden;
+    /* position: fixed; */
+    background: #673BB7;
+    /* top: 0; */
+    /* left: 0; */
+    z-index: 99;
+    /* display: flex; */
+    /* justify-content: left; */
+    justify-content: space-between;
+    /* display: flex; */
+    flex-direction: row;
+}
+
 
 .title-view {
     display: flex;
@@ -295,7 +410,8 @@ page {
 
 /* 左上角返回 */
 
-.back-icon, .home-icon {
+.back-icon,
+.home-icon {
     width: 28px;
     /* height: 100%; */
     position: absolute;

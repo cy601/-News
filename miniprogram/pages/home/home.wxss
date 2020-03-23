@@ -16,6 +16,63 @@
   display: flex;
   flex-direction: row;
 }
+.navbardark {
+  width: 100%;
+  overflow: hidden;
+  /* position: fixed; */
+  background: black;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  /* justify-content: left; */
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+.navbarred {
+  width: 100%;
+  overflow: hidden;
+  /* position: fixed; */
+  background: #D22222;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  /* justify-content: left; */
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+.navbarblue {
+  width: 100%;
+  overflow: hidden;
+  /* position: fixed; */
+  background: #0077ED;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  /* justify-content: left; */
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+.navbarpurple {
+  width: 100%;
+  overflow: hidden;
+  /* position: fixed; */
+  background: #673BB7;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  /* justify-content: left; */
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+
 
 .title-view {
   display: flex;
@@ -117,6 +174,15 @@
   position: relative;
 }
 
+/* 深色模式 */
+.bodydark{
+  font-size: 16px;
+  font-family: "PingFang SC", "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, "Microsoft YaHei", "微软雅黑", sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  color: white;
+  position: relative;
+  background: black;
+}
+
 .nav-bar {
   position: fixed;
   display: flex;
@@ -150,7 +216,12 @@
   height: 90px;
   box-sizing: border-box;
 }
-
+.news-itemdark {
+  line-height: 30px;
+  border-bottom: 1px solid #242424;
+  height: 90px;
+  box-sizing: border-box;
+}
 .text-img {
   display: flex;
   flex-direction: row;
@@ -245,6 +316,14 @@
   background-color: #F6F5F3;
   height: 36px;
   color: #000000;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.navbgdark {
+  background-color: #242424;
+  height: 36px;
+  color: white;
   display: flex;
   flex-direction: row;
   align-items: center;

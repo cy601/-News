@@ -1,4 +1,5 @@
 // pages/setup/setup.js
+var app = getApp();
 Page({
 
   /**
@@ -11,9 +12,14 @@ Page({
     autodark: false,//自动夜间模式
     darkmode: false,//夜间模式
     theme: 0,//默认主题为绿色
-    themelist: ['微信绿', '网易红', '知乎蓝', '简约白'],
+    themelist: ['微信绿', '网易红', '知乎蓝', '葡萄紫'],
     deviceFlag: true,//评论时允许使用设备信息，默认为允许
     positionFlag: true,//评论时允许使用位置信息，默认为允许
+
+    //暗黑模式及主题色
+    theme: '',
+    dark: '',
+
   },
 
   /**
@@ -70,6 +76,23 @@ Page({
       complete: () => { }
     });
 
+
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+      console.log(this.data.theme);
+      
+    }
+    this.setNavigationBarColor(this.data.theme);
+
+
     // that.setData({
     //   // index: wx.getStorageSync('fontsize'), //获取已设置的字体大小，
     //   autodark: wx.getStorageSync('autodark'),
@@ -89,6 +112,46 @@ Page({
       complete: () => { }
     });
 
+  },
+  //设置导航栏颜色
+  setNavigationBarColor: function (theme) {
+    var color = '';
+    switch (theme) {
+      case '':
+        color = '#00B26A'
+        break;
+      case 'red':
+        color = '#D22222'
+        break;
+      case 'blue':
+        color = '#0077ED'
+        break;
+      case 'purple':
+        color = '#673BB7'
+        break;
+
+      default:
+
+        break;
+    }
+    if (app.globalData.darkmode) {
+      color = '#000000'
+    }
+    
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: color,
+      animation: {
+        duration: 0,
+        timingFunc: 'linear'
+      },
+      success: (result) => {
+        console.log('set navbar color succee');
+
+      },
+      fail: () => { },
+      complete: () => { }
+    });
   },
 
 
@@ -131,6 +194,19 @@ Page({
   setdarkmode: function (e) {
     let that = this
     console.log('夜间模式', e.detail.value)
+    wx.showToast({
+      title: '设置成功，部分界面重启后生效',
+      icon: 'none',
+      image: '',
+      duration: 800,
+      mask: false,
+      success: (result) => {
+
+      },
+      fail: () => { },
+      complete: () => { }
+    });
+
     //存储更新后的夜间模式设置
     wx.setStorage({
       key: "darkmode",
@@ -221,7 +297,18 @@ Page({
   bindPickerThemeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
 
+    wx.showToast({
+      title: '设置成功，部分界面重启后生效',
+      icon: 'none',
+      image: '',
+      duration: 800,
+      mask: false,
+      success: (result) => {
 
+      },
+      fail: () => { },
+      complete: () => { }
+    });
     //存储更新后的字体大小
     wx.setStorage({
       key: "theme",

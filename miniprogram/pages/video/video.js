@@ -13,7 +13,11 @@ Page({
     duration: 0,
     details: [],
     fontsize: 1,//默认字体为正常
-    listFontSize: 16
+    listFontSize: 16,
+
+    //暗黑模式及主题色
+    theme: '',
+    dark: '',
   },
 
   /**
@@ -22,6 +26,21 @@ Page({
   onLoad: function (options) {
     var that = this
     app.getFontSize();//重新获取保存的字体大小
+
+
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark: 'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+    this.setNavigationBarColor(this.data.theme);
+
 
     that.setData({
       fontsize: app.globalData.fontsize,//获取全局字体大小
@@ -90,6 +109,49 @@ Page({
     });
   },
 
+
+
+
+
+  //设置导航栏颜色
+  setNavigationBarColor: function (theme) {
+    var color = '';
+    switch (theme) {
+      case '':
+        color = '#00B26A'
+        break;
+      case 'red':
+        color = '#D22222'
+        break;
+      case 'blue':
+        color = '#0077ED'
+        break;
+      case 'purple':
+        color = '#673BB7'
+        break;
+
+      default:
+
+        break;
+    }
+    if (app.globalData.darkmode) {
+      color = '#000000'
+    }
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: color,
+      animation: {
+        duration: 0,
+        timingFunc: 'linear'
+      },
+      success: (result) => {
+        console.log('set navbar color succee');
+
+      },
+      fail: () => { },
+      complete: () => { }
+    });
+  },
 
 
   //浏览某个视频

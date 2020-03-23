@@ -29,9 +29,10 @@ Page({
     fontsize: 1,//全局字体大小
     titleFontSize: 16,
     selectFontSize: 14,
-    normalFontSize: 14
+    normalFontSize: 14,
 
-
+    themecolor: null,
+    darkmode: null,
   },
 
   // 页面初始化 options为页面跳转所带来的参数
@@ -45,9 +46,27 @@ Page({
       statusBarHeight: app.globalData.statusBar,
       latitude: app.globalData.latitude,
       longitude: app.globalData.longitude,
-      positionL:app.globalData.position
+      position: app.globalData.position,
+
+
+      theme: '',
+      dark: '',
+
       // weatherData: app.globalData.weather
     })
+
+    //颜色以及夜间模式
+    if (app.globalData.darkmode) {
+      that.setData({
+        dark:'dark'
+      })
+    }
+    if (app.globalData.themecolor) {
+      that.setData({
+        theme: app.globalData.themecolor
+      })
+    }
+
 
     that.setFontSize(this.data.fontsize);
     //获得窗口的高度，在划到页面最底部时加载更多要用
@@ -63,7 +82,7 @@ Page({
       that.setData({
         city: ' 欢迎您 ',
         // position: app.globalData.position,
-        // weatherData: app.globalData.weather
+        // weatherData: app.globalData.weather 
       })
     }, 2000);
     //设置左上角天气

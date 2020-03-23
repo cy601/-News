@@ -2,7 +2,7 @@
 
 	<view class="page" style="width:100%">
 		<!-- nav view start -->
-		<view class="navbar" style="height:{{navH}}px">
+		<view class="navbar{{dark}}{{theme}}" style="height:{{navH}}px">
 			<!-- //下面是给标题的顶部设置一个状态栏高度的间距，防止标题太靠顶部 -->
 			<view class="title-view" bindtap="weatherReport" style="margin-top:{{(statusBarHeight+6)*2}}rpx">
 
@@ -15,7 +15,7 @@
 
 		</view>
 	</view>
-	<view class="top">
+	<view class="top{{dark}}{{theme}}">
 		<!-- <view class="title">{{location}}</view> -->
 		<view class="subtitle">
 			<view class="refreshtime">{{ weatherUpdateTime[1]}}更新</view>
@@ -63,7 +63,7 @@
 
 	<scroll-view class='list' scroll-y style="height:{{scrollHeight+80}}rpx;" bindscrolltoupper="refresh">
 		<view wx:for="{{listArray}}" wx:for-index="index" wx:for-item="item">
-			<view class="list_item {{index % 2 == 0 ? 'list_item_alter' : ''}}">
+			<view class="list_item{{dark}} {{index % 2 == 0 ? 'list_item_alter{{dark}}' : ''}}">
 				<image class="list_image" src='{{item.icon}}'></image>
 				<text class="list_weekday">{{item.weekday}} · {{item.wea}}</text>
 				<view class="list_t_highest">{{item.tem1}}</view>

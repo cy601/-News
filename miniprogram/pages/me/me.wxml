@@ -1,24 +1,25 @@
-<view class="bg">
-  <view class="head">
-    <view class="tologin" wx:if="{{!hasUserInfo && canIUse}}">
-      <view class="headIcon">
-        <image src="/icons/portrait.png" style="width:70px;height:70px;" bindtap="log"></image>
+<view class="page{{dark}}">
+  <view class="bg{{dark}}{{theme}}">
+    <view class="head">
+      <view class="tologin" wx:if="{{!hasUserInfo && canIUse}}">
+        <view class="headIcon">
+          <image src="/icons/portrait.png" style="width:70px;height:70px;" bindtap="log"></image>
+        </view>
+        <button class="bt loginbutton" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style=" font-size: 15px;font-weight:normal">
+          登录
+        </button>
       </view>
-      <button class="bt loginbutton" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style=" font-size: 15px;font-weight:normal">
-        登录
-      </button>
+      <block wx:else>
+        <view class="headIcon">
+          <image src="{{userInfo.avatarUrl}}" style="width:70px;height:70px;" bindtap="log"></image>
+        </view>
+        <view class="login">{{userInfo.nickName}}</view>
+        <view class="detail">
+          <text>></text>
+        </view>
+      </block>
     </view>
-    <block wx:else>
-      <view class="headIcon">
-        <image src="{{userInfo.avatarUrl}}" style="width:70px;height:70px;" bindtap="log"></image>
-      </view>
-      <view class="login">{{userInfo.nickName}}</view>
-      <view class="detail">
-        <text>></text>
-      </view>
-    </block>
-  </view>
-  <!-- <view class="count">
+    <!-- <view class="count">
        <view class="desc">
          <view>10</view>
          <view>关注</view>
@@ -32,13 +33,46 @@
          <view>7天访客</view>
        </view>
     </view> -->
-</view>
-<view class="h"></view>
-<view style="font-size:30px">
-  <block wx:if="{{hasUserInfo}}">
+  </view>
+  <view class="h"></view>
+  <view style="font-size:30px">
+    <block wx:if="{{hasUserInfo}}">
+      <view class="item">
+        <view class="title">
+          <button class="bt button{{dark}}" bindtap="myfav">我的收藏</button>
+          <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
+        </view>
+        <view class="detail2">
+          <text>></text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="item">
+        <view class="title">
+          <button class="bt button{{dark}}" bindtap="myfootprint">我的足迹</button>
+          <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
+        </view>
+        <view class="detail2">
+          <text>></text>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="item">
+        <view class="title">
+          <button class="bt button{{dark}}" bindtap="mycomments">我的评论</button>
+          <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
+        </view>
+        <view class="detail2">
+          <text>></text>
+        </view>
+      </view>
+      <view class="line"></view>
+    </block>
     <view class="item">
+      <!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
       <view class="title">
-        <button class="bt button" bindtap="myfav">我的收藏</button>
+        <!-- <button >11</button> -->
+        <button class="bt button{{dark}}" open-type="share" id="share-button" bindtap="share">分享给好友</button>
         <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
       </view>
       <view class="detail2">
@@ -48,8 +82,8 @@
     <view class="line"></view>
     <view class="item">
       <view class="title">
-        <button class="bt button" bindtap="myfootprint">我的足迹</button>
-        <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
+        <!-- <button >11</button> -->
+        <button class="bt button{{dark}}" open-type="feedback">用户反馈</button>
       </view>
       <view class="detail2">
         <text>></text>
@@ -58,7 +92,7 @@
     <view class="line"></view>
     <view class="item">
       <view class="title">
-        <button class="bt button" bindtap="mycomments">我的评论</button>
+        <button class="bt button{{dark}}" bindtap="setup">设置</button>
         <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
       </view>
       <view class="detail2">
@@ -66,37 +100,5 @@
       </view>
     </view>
     <view class="line"></view>
-  </block>
-  <view class="item">
-    <!-- bindtap="handleTapShareButton" open-type="share" id="share-button" -->
-    <view class="title">
-      <!-- <button >11</button> -->
-      <button class="bt button" open-type="share" id="share-button" bindtap="share">分享给好友</button>
-      <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
-    </view>
-    <view class="detail2">
-      <text>></text>
-    </view>
   </view>
-  <view class="line"></view>
-  <view class="item">
-    <view class="title">
-      <!-- <button >11</button> -->
-      <button class="bt button" open-type="feedback">用户反馈</button>
-    </view>
-    <view class="detail2">
-      <text>></text>
-    </view>
-  </view>
-  <view class="line"></view>
-  <view class="item">
-    <view class="title">
-      <button class="bt button" bindtap="setup">设置</button>
-      <!-- <button class="" open-type="share" title="分享" hover-class="none">分享好友</button> -->
-    </view>
-    <view class="detail2">
-      <text>></text>
-    </view>
-  </view>
-  <view class="line"></view>
 </view>

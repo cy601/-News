@@ -1,29 +1,10 @@
-<!-- index.wxml -->
-<view class="container">
-  <view class='page'>
-    <!-- nav view start -->
-    <view class='nav' style='height:{{navH}}px'>
-      <!-- //下面是给标题的顶部设置一个状态栏高度的间距，防止标题太靠顶部 -->
-      <view class='title-view' style='margin-top:{{statusBarHeight+10}}px'>
-        <view class='city' style='margin-right:20rpx'>{{city}}</view>
-        <view class='weather'>{{weather}}</view>
-        <!-- <image class='title-img' src='../../images/arrow_icon.png'></image> -->
-      </view>
-    </view>
+<view class="yuyinWrap">
+  <textarea class='yuyinCon' placeholder='请输入内容' value='{{content}}' bindinput='conInput'></textarea>
+  <view class=''>
+    <button class="yuyinBtn start" bindtap='wordYun'>开始</button>
+    <button class="yuyinBtn" bindtap='end'>结束</button>
+    
   </view>
-  <!--  -->
-  <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-      获取头像昵称
-    </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
-  
-
 </view>
+<button bindtap="play">1111</button>
+ <button class="" bindtap='end'>结束</button>

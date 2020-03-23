@@ -1,262 +1,238 @@
-// //index.js
-// //获取应用实例
-const app = getApp()
-
-// Page({
-//   data: {
-//     motto: 'Hello World',
-//     userInfo: {},
-//     hasUserInfo: false,
-//     canIUse: wx.canIUse('button.open-type.getUserInfo')
-//   },
-//   //事件处理函数
-//   bindViewTap: function() {
-//     wx.navigateTo({
-//       url: '../logs/logs'
-//     })
-//   },
-//   onLoad: function () {
-//     if (app.globalData.userInfo) {
-//       this.setData({
-//         userInfo: app.globalData.userInfo,
-//         hasUserInfo: true
-//       })
-//     } else if (this.data.canIUse){
-//       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-//       // 所以此处加入 callback 以防止这种情况
-//       app.userInfoReadyCallback = res => {
-//         this.setData({
-//           userInfo: res.userInfo,
-//           hasUserInfo: true
-//         })
-//       }
-//     } else {
-//       // 在没有 open-type=getUserInfo 版本的兼容处理
-//       wx.getUserInfo({
-//         success: res => {
-//           app.globalData.userInfo = res.userInfo
-//           this.setData({
-//             userInfo: res.userInfo,
-//             hasUserInfo: true
-//           })
-//         }
-//       })
-//     }
-//   },
-//   getUserInfo: function(e) {
-//     console.log(e)
-//     app.globalData.userInfo = e.detail.userInfo
-//     this.setData({
-//       userInfo: e.detail.userInfo,
-//       hasUserInfo: true
-//     })
-//   }
-// })
-//Page Object
+const app = getApp();
+//引入插件：微信同声传译
+const plugin = requirePlugin('WechatSI');
+var innerAudioContext = wx.createInnerAudioContext()
 Page({
-  data: {
-    delete: '',
-  },
-  //options(Object)
-  onLoad: function () {
 
-    let request = wx.request({
-      url: 'http://top.baidu.com/buzz?b=1&fr=topindex',
+
+  onLoad() {
+    var that = this
+    this.innerAudioContext = wx.createInnerAudioContext();
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          IMEI: res.SDKVersion
+        })
+        // this.data.IMEI = res.SDKVersion
+
+        console.log(that.data.IMEI)
+
+      }
+    }),
+      this.tts()
+
+    console.log(['111']);
+
+  },
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    content: '',//内容
+    src: '', //
+    token: '',
+    IMEI: '',
+    filePath: ''
+  },
+
+
+
+  tts: function (e) {
+    var that = this;
+
+    var grant_type = "client_credentials";
+
+    var appKey = "fergKWkFhkOPT5GkCd7kiguo";
+
+    var appSecret = "tUVUmPxxrYYHueQbwQ5hQgmTXyioX0Rw";
+
+    //  var url = "https://openapi.baidu.com/oauth/2.0/token" + "grant_type=" + grant_type + "&client_id=" + appKey + "&client_secret=" + appSecret
+
+    var url = "https://openapi.baidu.com/oauth/2.0/token"
+
+    wx.request({
+
+      url: url,
+
       data: {
 
+        grant_type: grant_type,
+
+        client_id: appKey,
+
+        client_secret: appSecret
+
       },
+
+      method: "GET",
+
       header: {
-        //'content-type': 'application/json' // 默认值 
-        // 'content-type': 'application/x-www-form-urlencoded' // 默认值 
-        'content-type':'application/x-www-form-urlencoded;charset=utf-8',
-      //  ' Content-Type': "text/html;"
-      },
-      method: 'POST',
-      // dataType: 'json',
-      responseType: 'text',
-      success: (result) => {
-        console.log(result
-          );
+
+        'content-type': 'application/json' // 默认值
 
       },
-      fail: () => { },
-      complete: () => { }
-    });
 
-
-
-
-    wx.getUserInfo({
       success: function (res) {
-        console.log(res);
 
-        var userInfo = res.userInfo
-        var nickName = userInfo.nickName
-        var avatarUrl = userInfo.avatarUrl
-        var gender = userInfo.gender //性别 0：未知、1：男、2：女
-        var province = userInfo.province
-        var city = userInfo.city
-        var country = userInfo.country
+        console.log(res.data)
+
+        // token = res.data.access_token
+        that.setData({
+          token: res.data.access_token
+        }),
+          that.cancel()
+
       }
+
     })
 
-    // var that = this;
-    // const db = wx.cloud.database()
+  },
+
+  // 合成
+
+  cancel: function (e) {
+    // var msg = "您好,欢发热纷纷额愤愤愤愤士大夫士大夫但是 覅大家覅十九分附件是的肌肤的说法是大家ijijiojijij ijij哦ii哦就发士大夫非法手段大赛分为额二分谔谔温热二万人二万人额热舞额外额外额外热舞人二万人二万人我额外发都是当时出大事从迎光临";
+    var msg = '尽管HTCG1的登场并没有iPhone那样耀眼，但如今看来它却奠定了很多安卓手机的基本设计。2005年，当塞班系统和WindowsMobile双雄争霸，诺基亚、摩托罗拉如日中天之时，手机系统的秘密战争已经悄然打响。一边是苹果正在秘密研发自己的初代iPhone，另一边搜索巨头谷歌则收购了安卓公司，两大巨头一个向左一个向右，为一场旷日持久的手机系统争霸埋下了伏笔，而其中的关键角色之一，就是这台HTCG1。发布于2008年9月的HTCG1是谷歌打磨三年，由HTC代工的运营商定制机。虽然相比初代iPhone上市晚一年，不过靠代工厂起家的HTC显然在手机上有自己的独特见解，这款机器的外观并没有iPhone那样破旧立新的意味，却很能代表之后几年安卓智能机的设计规范，即便今天看起来，它也是一款独具特色的产品。翘下巴的全键盘手机很多人并不是初见HTCG1就会感觉惊喜，尽管这台机器在如今看来说是HTC最重要的产品也不为过，但在发布时却并没有立刻吸引人们的目光。iPhone的光环过于耀眼，让这台手机的外观看起来多少显得平淡，但它依然有很多影响深远的设计。HTCG1正面设计了六个独特按键，除了通话、主页、返回、挂机键和上方居中的菜单键外，最特别的莫过于中间的触控轨迹球。如果你曾经是黑莓用户，那对这颗轨迹球应该不会陌生，它在早期安卓系统上可以方便地左右操控以及点选确认，这个设计在如今看来似乎有点繁琐，但作为第一台安卓手机，它的功能还是很实用的，而其它按键的设计则影响了之后的「三大金刚」键。如同你看到的，HTCG1的厚度达到17.1毫米，似乎笨拙无比，但是158克的重量以及翘起的下巴却带来了良好的握持手感，这个独特的下巴也让用户在通话时有更舒服的体验，于是乎类似这样的设计被继承在了后续的HTC机型上面，我们之前介绍过的HTCDesire就是这样。相机部分也比较特殊，手机侧面有一个独立的拍照按键，背后的摄像头只有310万像素，但在当时也已经具备了拍照和拍摄视频的功能，同时机器也支持T-Flash存储卡，相比iPhone来说扩展性更好，也是一个能吸引用户的功能点。作为第一台安卓手机，HTCG1在硬件配置上没有iPhone那样优秀，3.2英寸320*480分辨率的电容式LCD触摸屏让它在画面上表现平平，192M+528M的存储组合以及高通MSM7201A处理器也并不强，而且它甚至没有3.5毫米耳机接口。但这些依然不影响它的独特气质，因为当你尝试从侧面滑动它，你就会发现惊喜。没错，H'
+    // var text = JSON.parse(msg).msg;
+    var that = this;
+    // var tex = encodeURI(text);//转换编码url_encode UTF8编码
+    var tex = msg;
+    var tok = this.data.token;
+
+    var cuid = this.data.IMEI;
+
+    var ctp = 1;
+
+    var lan = "zh";    // zh表示中文
+
+    // 字符编码
+    var per = 5;
+    var spd = 5;  // 表示朗读的语速，9代表最快，1是最慢（撩妹请用2，绕口令请用9）
+
+    var url = "https://tsn.baidu.com/text2audio?tex=" + tex + "&lan=" + lan + "&cuid=" + cuid + "&ctp=" + ctp + "&tok=" + tok + "&spd=" + spd+'&per='+per
+
+    wx.downloadFile({
+
+      url: url,
+
+      success: function (res) {
+
+        console.log(res)
+        that.setData({
+          filePath: res.tempFilePath
+        })
+        // this.data.filePath = res.tempFilePath;
+
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+
+        if (res.statusCode === 200) {
+
+          wx.playVoice({
+
+            filePath: res.tempFilePath
+
+          })
+
+        }
+        that.play();
+
+      }
+
+    })
+
+  },
+
+  //播放
+
+  play: function (e) {
+    console.log('play');
+
+    // var innerAudioContext = wx.createInnerAudioContext()
+
+    this.innerAudioContext.autoplay = true
+
+    // this.innerAudioContext.src = this.data.filePath
+
+    this.innerAudioContext.src = this.data.filePath //设置音频地址
+    this.innerAudioContext.play(); //播放音频
 
 
-    // //获取用户openid
-    // wx.cloud.callFunction({
-    //   name: 'test',
-    //   complete: res => {
-    //     console.log('callFunction test result: ', res)
-    //   }
+    // this.innerAudioContext.onPlay(() => {
+
+    //   console.log('开始播放')
+
     // })
 
-    // wx.cloud.callFunction({
-    //   name: 'sum',
-    //   data: {
-    //     a: 1,
-    //     b: 2,
-    //   },
-    //   complete: res => {
-    //     console.log('callFunction test result: ', res)
-    //   },
-    // })
+    innerAudioContext.onError((res) => {
 
-    // wx.cloud.callFunction({
-    //   // 云函数名称
-    //   name: 'sum',
-    //   // 传给云函数的参数
-    //   data: {
-    //     a: 1,
-    //     b: 2,
-    //   },
-    //   success: function (res) {
-    //     console.log(res.result.sum) // 3
-    //   },
-    //   fail: console.error
-    // })
+      console.log(res.errMsg)
 
-    // 使用了 async await 语法
-    // const cloud = require('wx-server-sdk')
-    // const db = cloud.database()
+      console.log(res.errCode)
 
-
-    // const _ = db.command
-
-    // exports.main = async (event, context) => {
-    //   try {
-    //     return await db.collection('fav').where({
-
-    //     }).remove()
-    //   } catch (e) {
-    //     console.error(e)
-    //   }
-    // }
-
-
-    // // 1. 获取数据库引用
-    // 2. 构造查询语句
-    // collection 方法获取一个集合的引用
-    // where 方法传入一个对象，数据库返回集合中字段等于指定值的 JSON 文档。API 也支持高级的查询条件（比如大于、小于、in 等），具体见文档查看支持列表
-    // get 方法会触发网络请求，往数据库取数据
-
-    // db.collection('fav').where({
-
-    // }).get({
-    //   success: function (res) {
-    //     // 输出 [{ "title": "The Catcher in the Rye", ... }]
-    //     // console.log(res.data[0]._id)
-    //     that.setData({
-    //       delete: res.data[0]._id,
-    //     })
-    //   }
-    // })
-
-
-
-    // // setTimeout(() => {
-    // //       console.log(this.data.delete);
-    // // }, 2000);
-
-
-    // setTimeout(() => {
-    //   //以ID删除
-    //   db.collection('fav').doc(this.data.delete).remove({
-    //     success: function (res) {
-    //       console.log(res.data)
-    //       console.log('delete succee');
-
-    //     }
-    //   })
-    // }, 3000);
-
-
-
-
-    // //往云数据库增添东西
-    // db.collection('fav').add({
-    //   // data 字段表示需新增的 JSON 数据
-    //   data: {
-    //     // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
-
-    //     "title": "受疫情影响地区意甲或空场6-7轮 国家德比受牵连",
-    //     "time": "2020-02-24 14:38:00",
-    //     "src": "国际足球综合",
-    //     "category": "sports",
-    //     "pic": "https://n.sinaimg.cn/sports/crawl/260/w640h420/20200224/9c55-ipvnszf4362991.jpg",
-    //     "content": "<p class=\"art_p\">直播吧2月24日讯 由于新冠肺炎疫情的影响，意甲本轮有4场比赛延期，其中包括国米主场对阵桑普多利亚。</p>\n<p class=\"art_p\">据《米兰体育报》报道，原定于北京时间3月2日凌晨3：45进行的尤文与国米之间的意大利国家德比可能被推迟，也可能空场进行。除非尤文方面提出要求，否则本场比赛非常可能空场进行。</p>\n<div sax-type=\"proxy\" class=\"j_native_uvw200224 box\" style=\"margin:20px 0\"></div><p class=\"art_p\">意大利政府官员以及体育部长斯帕达弗拉正在制定一项相关法令，法令预计将在今日生效。该法令规定了意大利国内继续进行体育赛事的可能性，但是受到新冠肺炎疫情影响的地区（包括都灵所在的皮埃蒙特大区）将采用空场的形式进行比赛。</p>\n<p class=\"art_p\">目前，相关部门仍在讨论该项法令的持续时间，据悉，该法令可能持续6-7轮比赛。一旦法令实施，尤文主场与国米的意大利国家德比就将空场进行。</p>",
-    //     "url": "https://sports.sina.cn/seriea/inter/2020-02-24/detail-iimxxstf3971557.d.html?vt=4&pos=108",
-    //     "weburl": "https://sports.sina.com.cn/g/seriea/2020-02-24/doc-iimxxstf3971557.shtml"
-
-    //   },
-    //   success: function (res) {
-    //     // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-    //     console.log(res)
-    //   }
-    // })
-
-    // var that =this
-    // // 获取集合的引用
-    // const articles = app.globalData.db.collection('fav')
-    // // 获取文章列表集合数据
-    // articles.get({
-    //   success(res) {
-    //     // res.data 包含该记录的数据
-    //     console.log(res.data)
-    //     that.setData({
-    //       articles: res.data
-    //     })
-    //   }
-    // })
-  },
-
-  onReady: function () {
+    })
+    // innerAudioContext.pause();
 
   },
-  onShow: function () {
 
+
+
+  // onReady(e) {
+  //   //创建内部 audio 上下文 InnerAudioContext 对象。
+  //   this.innerAudioContext = wx.createInnerAudioContext();
+  //   this.innerAudioContext.onError(function (res) {
+  //     console.log(res);
+  //     wx.showToast({
+  //       title: '语音播放失败',
+  //       icon: 'none',
+  //     })
+  //   })
+  // },
+
+
+
+  // // 手动输入内容
+  // conInput: function (e) {
+  //   this.setData({
+  //     content: e.detail.value,
+  //   })
+  // },
+  // // 文字转语音
+  // wordYun: function (e) {
+  //   var that = this;
+  //   var content = this.data.content;
+  //   plugin.textToSpeech({
+  //     lang: "zh_CN",
+  //     tts: true,
+  //     content: content,
+  //     success: function (res) {
+  //       console.log(res);
+  //       console.log("succ tts", res.filename);
+  //       that.setData({
+  //         src: res.filename
+  //       })
+  //       that.yuyinPlay();
+
+  //     },
+  //     fail: function (res) {
+  //       console.log("fail tts", res)
+  //     }
+  //   })
+  // },
+
+  // //播放语音
+  // yuyinPlay: function (e) {
+  //   if (this.data.src == '') {
+  //     console.log(暂无语音);
+  //     return;
+  //   }
+  //   this.innerAudioContext.src = this.data.src //设置音频地址
+  //   this.innerAudioContext.play(); //播放音频
+  // },
+
+  // 结束语音
+  end: function (e) {
+    this.innerAudioContext.pause();//暂停音频
   },
-  onHide: function () {
 
-  },
-  onUnload: function () {
-
-  },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  },
-  onPageScroll: function () {
-
-  },
-  //item(index,pagePath,text)
-  onTabItemTap: function (item) {
-
-  }
-});
+})
