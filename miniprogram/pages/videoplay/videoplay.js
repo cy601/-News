@@ -50,7 +50,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options);
+    // console.log(options);
     that.setData({
       details: JSON.parse(decodeURIComponent(options.data)),
       fontsize: app.globalData.fontsize,//获取全局字体大小
@@ -99,7 +99,7 @@ Page({
       that.setData({
         model: app.globalData.systemInfo.model
       })
-      console.log(this.data.model);
+      // console.log(this.data.model);
     }
     else {
       that.setData({

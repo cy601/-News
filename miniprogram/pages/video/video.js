@@ -228,6 +228,13 @@ Page({
     console.log('onShow');
     app.getFontSize();//重新获取保存的字体大小
     this.onLoad();//重新加载，以便字体、主题改变生效
+    
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+    this.getTabBar().setData({
+      selected: 1
+    })
+  }
   },
 
   /**

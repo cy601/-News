@@ -27,6 +27,7 @@ Page({
     // weatherData: []
 
     fontsize: 1,//全局字体大小
+
     titleFontSize: 16,
     selectFontSize: 14,
     normalFontSize: 14,
@@ -135,7 +136,7 @@ Page({
       url: url,
       method: 'GET',
       success: (res) => {
-        console.log(res.data);
+        // console.log(res.data);
         that.setData({
           newslist: res.data.result.list,
         });
@@ -156,7 +157,7 @@ Page({
 
   //左上角，查看天气预报
   weatherReport: function (params) {
-    console.log('weather');
+    // console.log('weather');
 
     wx.navigateTo({
       url: '/pages/weatherReport/weatherReport',
@@ -238,6 +239,13 @@ Page({
     })
     that.setFontSize(this.data.fontsize);
     // this.onLoad();//重新加载，以便字体、主题改变生效
+
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+    this.getTabBar().setData({
+      selected: 0
+    })
+  }
   },
 
 
@@ -283,8 +291,8 @@ Page({
     wx.navigateTo({
       url: '/pages/details/details?data=' + encodeURIComponent(JSON.stringify(this.data.details)),//先将对象转换为字符串，再encodeURIComponent函数处理，encodeURIComponent() 函数可把字符串作为 URI 组件进行编码，防止url出现特殊字符数据截取。在目标页面接收时用decodeURIComponent转回字符串
       success: (result) => {
-        console.log('d')
-        console.log(this.data.details)
+        // console.log('d')
+        // console.log(this.data.details)
       },
       fail: () => {
         console.log('失败')
@@ -297,7 +305,7 @@ Page({
   //设置正文及标题的大小
   setFontSize: function (e) {
     let that = this;
-    console.log('setFontSize');
+    // console.log('setFontSize');
     console.log(e);
 
     switch (e) {

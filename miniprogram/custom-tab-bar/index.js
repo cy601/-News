@@ -93,10 +93,10 @@ Component({
         break;
     }
 
-    console.log(this.data.background);
+    // console.log(this.data.background);
 
-    // console.log(storageInfo);
-    console.log('1111');
+    // // console.log(storageInfo);
+    // console.log('1111');
 
 
 
@@ -104,11 +104,16 @@ Component({
   methods: {
     switchTab(e) {
       const data = e.currentTarget.dataset
-      const url = data.path
-      wx.switchTab({ url })
+      const url = data.path 
       this.setData({
         selected: data.index
       })
+      wx.switchTab({ url })
+     
+      console.log('change tab');
+      console.log(data.index);
+      
+      
     }
   }
 })

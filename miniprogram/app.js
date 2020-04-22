@@ -32,7 +32,7 @@ App({
         traceUser: true,
 
 
-      }, console.log('succee'))
+      }, )
     }
 
     let that = this;
@@ -50,7 +50,7 @@ App({
       that.globalData.themecolor = ''
     }
     else {
-      console.log('theme color');
+      // console.log('theme color');
       
       switch (theme) {
         case '0':
@@ -160,7 +160,7 @@ App({
 
     wx.getSystemInfo({
       success: (result) => {
-        console.log(result);
+        // console.log(result);
 
         that.globalData.systemInfo = result;
       },
@@ -188,7 +188,7 @@ App({
   getFontSize: function () {
     let that = this
     that.globalData.fontsize = wx.getStorageSync('fontsize');
-    console.log('字体大小' + that.globalData.fontsize);
+    // console.log('字体大小' + that.globalData.fontsize);
   },
 
   //获取当前位置信息
@@ -221,7 +221,7 @@ App({
       responseType: 'text',
       success: (result) => {
         this.globalData.position = result.data;
-        console.log(result.data)
+        // console.log(result.data)
 
         this.getweater();//请求天气
 
@@ -241,7 +241,7 @@ App({
       dataType: 'json',
       responseType: 'text',
       success: (result) => {
-        console.log(result.data);
+        // console.log(result.data);
         this.globalData.weather = result.data
 
       },
